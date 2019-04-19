@@ -1,0 +1,58 @@
+<app-menues></app-menues>
+<div style="padding-top: 20px;"></div>
+<div class="form-container">
+  <div class="form-wrapper grantleave p-l-40 p-r-40 resptable">
+    <div class="pagination">
+      <div class="pages-heading">
+        <span class="form-heading p-b-20">APPLIED LEAVES</span>
+      </div>
+      <div class="pages-record">
+          Total Leaves: {{totalLeaves}}
+      </div>
+      <div class="pages-detail">
+        Page No: <select id="drpPageNo" name="pageNo" class="input-text select paginate" #pageNoText="ngModel" [(ngModel)]="pageNo">
+          <option [ngValue]="page" *ngFor="let page of totalRecordList">
+            {{page}}
+          </option>
+        </select>
+        <button type="button" class="paginate-btn" (click)="getAllLeaveData()">Go</button>
+        <button type="button" class="paginate-btn" [disabled]="disablePrevBtn" (click)="getPrevLeaveData()"><<</button>
+        <button type="button" class="paginate-btn" [disabled]="disableNextBtn" (click)="getNextLeaveData()">>></button>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <th>#</th>
+        <th>Applied By</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Half Day</th>
+        <th>Half Day Date</th>
+        <th>No. Of Days</th>
+        <th>Status</th>
+        <th>Reason</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of allLeavesList; index as i">
+          <td class="width-30">{{i + 1}}</td>
+          <td title="{{data.AppiedBy}}" class="width-120">{{data.AppiedBy}}</td>
+          <td class="width-120">{{data.FromDate | date: 'dd-MM-yyyy'}}</td>
+          <td class="width-120">{{data.ToDate | date: 'dd-MM-yyyy'}}</td>
+          <td class="width-120">{{data.HalfDay}}</td>
+          <td class="width-120">{{data.HalfDayDate | date: 'dd-MM-yyyy'}}</td>
+          <td class="width-120">{{data.NoOfDays}}</td>
+          <td class="width-120">{{data.Approved}}</td>
+          <td title="{{data.Reason}}" class="ellipsis">{{data.Reason}}</td>
+          <td class="width-120">
+            <a href="javascript:void(0)" (click)="approveLeave(data.LeaveUniqueId)">A</a> / 
+            <a href="javascript:void(0)" (click)="unapproveLeave(data.LeaveUniqueId)">U</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="text-align: left; padding-top: 10px;">
+      Showing 10 Records Per Page
+    </div>
+  </div>
+</div>

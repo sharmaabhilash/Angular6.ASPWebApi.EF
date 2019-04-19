@@ -1,0 +1,20 @@
+<div class="form-container">
+  <div class="form-wrapper login p-l-85 p-t-85 p-r-85 p-b-85">
+    <span class="form-heading p-b-20">Login Form</span>
+    <form id="Login" #userLoginForm="ngForm" (ngSubmit)="loginUserOperation()">
+        <div class="input-div m-b-25" id="divEmailId">
+            <input type="text" name="EmailId" class="input-text" id="tbUserName" #EmailId="ngModel" [(ngModel)]="login.EmailId" placeholder="Email Id" />
+        </div>
+        <div class="input-div m-b-25" id="divPassword">
+            <input type="password" name="Password" class="input-text" id="tbPassword" #Password="ngModel" [(ngModel)]="login.Password" placeholder="Password" />
+        </div>
+        <div class="button-div">
+            <button type="submit" name="Submit" class="form-btn submit" id="btnSubmit" (click)="validateLogin()">Login</button>
+            <button type="reset" class="form-btn reset" id="btnReset" name="Reset">Reset</button>
+        </div>
+    </form>
+    <div class="link-div">
+        <a routerLink="/register" class="form-link">Register</a>
+    </div>
+  </div>
+</div>

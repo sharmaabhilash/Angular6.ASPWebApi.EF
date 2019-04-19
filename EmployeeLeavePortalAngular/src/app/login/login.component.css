@@ -1,0 +1,17 @@
+.form-link {
+    text-decoration: none;
+    color: #555555;
+}
+
+.link-div {
+    width: 100%;
+    text-align: left;
+}
+
+.link-div a:hover {
+    color: #d43f8d;
+}
+
+.login {
+    width: 450px;
+}

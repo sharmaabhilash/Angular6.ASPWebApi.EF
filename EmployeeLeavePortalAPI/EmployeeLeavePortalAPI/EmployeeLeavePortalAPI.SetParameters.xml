@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/EmployeeLeavePortalAPI_deploy" />
+  <setParameter name="EmployeeLeavePortalEntities-Web.config Connection String" value="metadata=res://*/Models.EmployeeLeavePortal.csdl|res://*/Models.EmployeeLeavePortal.ssdl|res://*/Models.EmployeeLeavePortal.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=LAPTOP-E0I3ABBF\SQLEXPRESS;Initial Catalog=EmployeeLeavePortal;User ID=sa;Password=ABHILASH&quot;" />
+</parameters>

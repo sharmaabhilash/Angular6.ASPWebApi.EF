@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="EmployeeLeavePortalEntities-Web.config Connection String" description="EmployeeLeavePortalEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.EmployeeLeavePortal.csdl|res://*/Models.EmployeeLeavePortal.ssdl|res://*/Models.EmployeeLeavePortal.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=LAPTOP-E0I3ABBF\SQLEXPRESS;initial catalog=EmployeeLeavePortal;user id=sa;password=ABHILASH;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\VS\ 2017\\LeavePortalAngularAndAPI\\EmployeeLeavePortalAPI\\EmployeeLeavePortalAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EmployeeLeavePortalEntities']/@connectionString" />
+  </parameter>
+</parameters>

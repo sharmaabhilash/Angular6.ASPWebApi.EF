@@ -1,0 +1,35 @@
+.reg-type {
+    font-family: Raleway-Medium;
+    font-size: 20px;
+    color: #d43f8d;
+    line-height: 1.2;
+    width: 100%;
+    text-align: left;
+}
+
+.link-div {
+    width: 100%;
+    text-align: left;
+}
+
+.link-div a:hover {
+    color: #d43f8d;
+}
+
+.form-link {
+    text-decoration: none;
+    color: #555555;
+}
+
+.register {
+    width: 450px;
+}
+
+.upload-image {
+    width: 100%;
+    font-size: 15px;
+    display: block;
+    padding: 0px 0px 0px 0px;
+    border: none;
+    outline: none;
+}

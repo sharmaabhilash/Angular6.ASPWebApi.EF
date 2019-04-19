@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeeLeavePortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tbl_Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tbl_RegisterUser" Relationship="EmployeeLeavePortalModel.FK_Tbl_Department_Tbl_RegisterUser" FromRole="Tbl_Department" ToRole="Tbl_RegisterUser" />
+  </EntityType>
+  <EntityType Name="Tbl_Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tbl_RegisterUser" Relationship="EmployeeLeavePortalModel.FK_Tbl_Position_Tbl_RegisterUser" FromRole="Tbl_Position" ToRole="Tbl_RegisterUser" />
+  </EntityType>
+  <EntityContainer Name="EmployeeLeavePortalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_Department" EntityType="Self.Tbl_Department" />
+    <EntitySet Name="Tbl_Position" EntityType="Self.Tbl_Position" />
+    <FunctionImport Name="GetDepartmentDetails" ReturnType="Collection(EmployeeLeavePortalModel.USP_GetDepartmentDetails_Result)" />
+    <FunctionImport Name="GetPositionDetails" ReturnType="Collection(EmployeeLeavePortalModel.USP_GetPositionDetails_Result)" />
+    <FunctionImport Name="OperationRegisterUser">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="DateOfJoining" Mode="In" Type="DateTime" />
+      <Parameter Name="PositionId" Mode="In" Type="Int32" />
+      <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
+      <Parameter Name="ApprovalPermission" Mode="In" Type="String" />
+      <Parameter Name="UniqueId" Mode="In" Type="String" />
+      <Parameter Name="FileName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CheckForLogin" ReturnType="Collection(Int32)">
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="UniqueId" Mode="InOut" Type="String" />
+      <Parameter Name="ApprovalPermission" Mode="InOut" Type="String" />
+      <Parameter Name="UserName" Mode="InOut" Type="String" />
+      <Parameter Name="ImageName" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="OperationApplyLeave">
+      <Parameter Name="Id" Mode="In" Type="Int64" />
+      <Parameter Name="AppliedBy" Mode="In" Type="String" />
+      <Parameter Name="ApplyDate" Mode="In" Type="DateTime" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+      <Parameter Name="NoOfDays" Mode="In" Type="Decimal" />
+      <Parameter Name="HalfDay" Mode="In" Type="String" />
+      <Parameter Name="HalfDayDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Reason" Mode="In" Type="String" />
+      <Parameter Name="Mode" Mode="In" Type="Int32" />
+      <Parameter Name="UniqueId" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Tbl_RegisterUser" EntityType="EmployeeLeavePortalModel.Tbl_RegisterUser" />
+    <AssociationSet Name="FK_Tbl_Department_Tbl_RegisterUser" Association="EmployeeLeavePortalModel.FK_Tbl_Department_Tbl_RegisterUser">
+      <End Role="Tbl_Department" EntitySet="Tbl_Department" />
+      <End Role="Tbl_RegisterUser" EntitySet="Tbl_RegisterUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Position_Tbl_RegisterUser" Association="EmployeeLeavePortalModel.FK_Tbl_Position_Tbl_RegisterUser">
+      <End Role="Tbl_Position" EntitySet="Tbl_Position" />
+      <End Role="Tbl_RegisterUser" EntitySet="Tbl_RegisterUser" />
+    </AssociationSet>
+    <EntitySet Name="Tbl_ApplyLeave" EntityType="EmployeeLeavePortalModel.Tbl_ApplyLeave" />
+    <EntitySet Name="VW_GetAppliedLeaveInfo" EntityType="EmployeeLeavePortalModel.VW_GetAppliedLeaveInfo" />
+    <EntitySet Name="VW_GetAllAppliedLeave" EntityType="EmployeeLeavePortalModel.VW_GetAllAppliedLeave" />
+    <FunctionImport Name="ApproveUnapproveLeave">
+      <Parameter Name="UniqueId" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="ApproveBy" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="USP_GetDepartmentDetails_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Department" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="USP_GetPositionDetails_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Position" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="Tbl_RegisterUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfJoining" Type="DateTime" Precision="0" />
+    <Property Name="PositionId" Type="Int32" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="ApprovalPermission" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UniqueId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tbl_Department" Relationship="EmployeeLeavePortalModel.FK_Tbl_Department_Tbl_RegisterUser" FromRole="Tbl_RegisterUser" ToRole="Tbl_Department" />
+    <NavigationProperty Name="Tbl_Position" Relationship="EmployeeLeavePortalModel.FK_Tbl_Position_Tbl_RegisterUser" FromRole="Tbl_RegisterUser" ToRole="Tbl_Position" />
+    <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Tbl_Department_Tbl_RegisterUser">
+    <End Type="EmployeeLeavePortalModel.Tbl_Department" Role="Tbl_Department" Multiplicity="0..1" />
+    <End Type="EmployeeLeavePortalModel.Tbl_RegisterUser" Role="Tbl_RegisterUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tbl_RegisterUser">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Position_Tbl_RegisterUser">
+    <End Type="EmployeeLeavePortalModel.Tbl_Position" Role="Tbl_Position" Multiplicity="0..1" />
+    <End Type="EmployeeLeavePortalModel.Tbl_RegisterUser" Role="Tbl_RegisterUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tbl_RegisterUser">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Tbl_ApplyLeave">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="AppliedBy" Type="Int32" />
+    <Property Name="ApplyDate" Type="DateTime" Precision="0" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <Property Name="NoOfDays" Type="Decimal" Precision="3" Scale="1" />
+    <Property Name="HalfDay" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="HalfDayDate" Type="DateTime" Precision="0" />
+    <Property Name="Reason" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Approved" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ApproveDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="PositionId" Type="Int32" />
+    <Property Name="UniqueId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ApprovedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_GetAppliedLeaveInfo">
+    <Key>
+      <PropertyRef Name="ApplyLeaveId" />
+      <PropertyRef Name="Position" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplyLeaveId" Type="Int64" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <Property Name="NoOfDays" Type="Decimal" Precision="3" Scale="1" />
+    <Property Name="HalfDay" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="HalfDayDate" Type="DateTime" Precision="0" />
+    <Property Name="Reason" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Approved" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ApproveDate" Type="DateTime" Precision="0" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="PositionId" Type="Int32" />
+    <Property Name="ApplyLeaveUniqueId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserUniqueId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_GetAllAppliedLeave">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ApplyLeaveId" />
+    </Key>
+    <Property Name="AppiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NoOfDays" Type="Decimal" Precision="3" Scale="1" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <Property Name="HalfDay" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="HalfDayDate" Type="DateTime" Precision="0" />
+    <Property Name="Reason" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Approved" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="LeaveUniqueId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ApplyLeaveId" Type="Int64" Nullable="false" />
+  </EntityType>
+</Schema>
