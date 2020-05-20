@@ -88,3 +88,5 @@ F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAP
 F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\bin\Microsoft.Owin.Security.OAuth.xml
 F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\bin\Microsoft.Owin.Cors.dll
 F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\bin\Microsoft.Owin.Cors.xml
+F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\bin\log4net.dll
+F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\bin\log4net.xml

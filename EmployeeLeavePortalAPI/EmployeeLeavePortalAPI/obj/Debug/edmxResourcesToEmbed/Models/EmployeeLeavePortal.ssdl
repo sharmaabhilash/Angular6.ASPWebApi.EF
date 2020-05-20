@@ -134,6 +134,7 @@ warning 6002: The table/view 'EmployeeLeavePortal.dbo.VW_GetAppliedLeaveInfo' do
     <Parameter Name="UniqueId" Type="varchar" Mode="InOut" />
     <Parameter Name="ApprovalPermission" Type="varchar" Mode="InOut" />
     <Parameter Name="UserName" Type="varchar" Mode="InOut" />
+    <Parameter Name="ImageName" Type="varchar" Mode="InOut" />
   </Function>
   <Function Name="USP_GetDepartmentDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="USP_GetPositionDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />

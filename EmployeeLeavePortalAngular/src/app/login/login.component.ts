@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
       this.cookieData.ApprovalPermission = res.approvalPermission;
       this.cookieData.UserName = res.userName;
       this.cookieData.ImageSrc = "http://192.168.1.10:75/UploadFile/" + res.imageName;
-      console.log(this.cookieData.ImageSrc);
       this.cookies.set('CookieData', JSON.stringify(this.cookieData), 0.041666);
       //this.router.navigate(['/applyleave'], { queryParams: { id: res.id } });
       this.router.navigate(['/applyleave']);

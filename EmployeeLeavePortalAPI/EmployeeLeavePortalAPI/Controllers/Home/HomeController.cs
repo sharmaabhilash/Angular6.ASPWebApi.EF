@@ -1,5 +1,6 @@
 ﻿using EmployeeLeavePortalAPI.BusinessLogic.Home;
 using EmployeeLeavePortalAPI.Models;
+using log4net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 
@@ -15,6 +17,8 @@ namespace EmployeeLeavePortalAPI.Controllers.Home
     [RoutePrefix("api/home")]
     public class HomeController : ApiController
     {
+        private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         #region Register User Functionality
         [HttpGet]
         [Route("position")]
@@ -28,7 +32,7 @@ namespace EmployeeLeavePortalAPI.Controllers.Home
             }
             catch (Exception ex)
             {
-
+                log.Error("Position Details: " + ex.Message);
             }
             return listPositionDetails;
         }
@@ -45,7 +49,7 @@ namespace EmployeeLeavePortalAPI.Controllers.Home
             }
             catch (Exception ex)
             {
-
+                log.Error("Department Details: " + ex.Message);
             }
             return listDepartmentDetails;
         }
@@ -60,12 +64,19 @@ namespace EmployeeLeavePortalAPI.Controllers.Home
                 CopyFile(objRegisterUser.FileName);
                 int affectedRow = objRegisterUserBO.InsertRegisterUser(objRegisterUser);
                 if (affectedRow > 0)
+                {
+                    log.Info("Save Register User: " + objRegisterUser.Name + " is regestered successfully.");
                     return "success";
+                }
                 else
+                {
+                    log.Info("Save Register User: " + objRegisterUser.Name + " is not regestered successfully.");
                     return "failed";
+                }
             }
             catch (Exception ex)
             {
+                log.Error("Save Register User: " + objRegisterUser.Name + ", " + ex.Message);
                 return ex.Message;
             }
         }
@@ -142,10 +153,12 @@ namespace EmployeeLeavePortalAPI.Controllers.Home
                 HashTable.Add("id", UniqueId);
                 HashTable.Add("approvalPermission", ApprovalPermission);
                 HashTable.Add("userName", UserName);
-                HashTable.Add("imageName", ImageName); 
+                HashTable.Add("imageName", ImageName);
+                log.Info("Login User: " + objRegisterUser.EmailId + " has been logged in.");
             }
             catch (Exception ex)
             {
+                log.Error("Login User: " + ex.Message);
                 HashTable.Add("status", ex.Message);
                 HashTable.Add("id", "");
                 HashTable.Add("approvalPermission", "");

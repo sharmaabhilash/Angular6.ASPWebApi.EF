@@ -1,6 +1,6 @@
 export class ApiUrls {
-    //ROOT_URL: string = 'http://localhost:51227/';
-    ROOT_URL: string = 'http://192.168.1.10:75/';
+    ROOT_URL: string = 'http://localhost:51227/';
+    //ROOT_URL: string = 'http://192.168.1.10:75/';
     GET_POSITION_URL: string = 'api/home/position';
     GET_DEPARTMENT_URL: string = 'api/home/department';
     POST_REGISTERUSER_URL: string = 'api/home/saveregisteruser';

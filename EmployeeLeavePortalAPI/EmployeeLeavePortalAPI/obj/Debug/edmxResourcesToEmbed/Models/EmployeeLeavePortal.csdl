@@ -39,6 +39,7 @@
       <Parameter Name="UniqueId" Mode="InOut" Type="String" />
       <Parameter Name="ApprovalPermission" Mode="InOut" Type="String" />
       <Parameter Name="UserName" Mode="InOut" Type="String" />
+      <Parameter Name="ImageName" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="OperationApplyLeave">
       <Parameter Name="Id" Mode="In" Type="Int64" />
