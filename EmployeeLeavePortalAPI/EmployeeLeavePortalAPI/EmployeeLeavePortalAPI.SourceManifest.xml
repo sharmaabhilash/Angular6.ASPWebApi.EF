@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sitemanifest>
-  <IisApp path="F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\obj\Release\Package\PackageTmp" />
-  <setAcl path="F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="F:\VS 2017\LeavePortalAngularAndAPI\EmployeeLeavePortalAPI\EmployeeLeavePortalAPI\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
-</sitemanifest>
